@@ -1,5 +1,6 @@
 .terraform/
 kind-configs/
+tfplan
 *.tfstate
 *.tfstate.*
 .terraform.lock.hcl

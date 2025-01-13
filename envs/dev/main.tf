@@ -49,7 +49,7 @@ resource "null_resource" "rancher_import" {
     command = <<EOT
     kind get kubeconfig --name kind-cluster-dev-${count.index + 1} > /tmp/kubeconfig-kind-cluster-dev-${count.index + 1}.yaml
     KUBECONFIG=/tmp/kubeconfig-kind-cluster-dev-${count.index + 1}.yaml \
-    kubectl apply --insecure-skip-tls-verify -f ${var.rancher_server_url}/v3/import/${var.rancher_import_token}.yaml
+    kubectl apply --certificate-authority=./rancher-ca.crt -f https://${var.rancher_server_url}/v3/import/${var.rancher_import_token}.yaml
     EOT
   }
 }
